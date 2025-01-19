@@ -14,9 +14,9 @@ const { hasRole } = usePermission();
 
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-gray-100 :bg-gray-900">
             <nav
-                class="bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800"
+                class="bg-white border-b border-gray-100 :border-gray-700 :bg-gray-800"
             >
                 <!-- Primary Navigation Menu -->
                 <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -26,7 +26,7 @@ const { hasRole } = usePermission();
                             <div class="flex items-center shrink-0">
                                 <Link :href="route('dashboard')">
                                     <ApplicationLogo
-                                        class="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200"
+                                        class="block w-auto text-gray-800 fill-current h-9 :text-gray-200"
                                     />
                                 </Link>
                             </div>
@@ -59,7 +59,7 @@ const { hasRole } = usePermission();
                                         <span class="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
+                                                class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none :bg-gray-800 :text-gray-400 :hover:text-gray-300"
                                             >
                                                 {{ $page.props.auth.user.name }}
 
@@ -104,7 +104,7 @@ const { hasRole } = usePermission();
                                     showingNavigationDropdown =
                                         !showingNavigationDropdown
                                 "
-                                class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400"
+                                class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none :text-gray-500 :hover:bg-gray-900 :hover:text-gray-400 :focus:bg-gray-900 :focus:text-gray-400"
                             >
                                 <svg
                                     class="w-6 h-6"
@@ -159,11 +159,11 @@ const { hasRole } = usePermission();
 
                     <!-- Responsive Settings Options -->
                     <div
-                        class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600"
+                        class="pt-4 pb-1 border-t border-gray-200 :border-gray-600"
                     >
                         <div class="px-4">
                             <div
-                                class="text-base font-medium text-gray-800 dark:text-gray-200"
+                                class="text-base font-medium text-gray-800 :text-gray-200"
                             >
                                 {{ $page.props.auth.user.name }}
                             </div>
@@ -190,7 +190,7 @@ const { hasRole } = usePermission();
 
             <!-- Page Heading -->
             <header
-                class="bg-white shadow dark:bg-gray-800"
+                class="bg-white shadow :bg-gray-800"
                 v-if="$slots.header"
             >
                 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">

@@ -40,7 +40,10 @@ defineProps(["permissions"]);
                         >
                             <TableDataCell>{{ permission.id }}</TableDataCell>
                             <TableDataCell>{{ permission.name }}</TableDataCell>
-                            <TableDataCell>Edit/Delete</TableDataCell>
+                            <TableDataCell class="space-x-4">
+                                <Link :href="route('permissions.edit', permission.id)" class="px-3 py-2 font-semibold text-green-400 hover:text-green-600">Edit</Link>
+                                <Link :href="route('permissions.destroy', permission.id)" method="DELETE" as="button" class="px-3 py-2 font-semibold text-red-400 hover:text-red-600">Delete</Link>
+                            </TableDataCell>
                         </TableRow>
                     </template>
                 </Table>

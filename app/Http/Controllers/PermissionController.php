@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\none;
 use Inertia\Inertia;
 use Inertia\Response;
-use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use App\Http\Resources\PermissionResource;
 use App\Http\Requests\CreatePermissionRequest;
 use Illuminate\Http\RedirectResponse;
-use Spatie\Permission\Commands\CreatePermission;
 
 class PermissionController extends Controller
 {
@@ -42,34 +40,30 @@ class PermissionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(none $none)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(none $none)
+    public function edit(Permission $permission): Response
     {
-        //
+        return Inertia::render('Admin/Permissions/Edit', [
+            'permission' => new PermissionResource($permission)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, none $none)
+    public function update(CreatePermissionRequest $request, Permission $permission): RedirectResponse
     {
-        //
+        $permission->update($request->validated());
+        return to_route('permissions.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(none $none)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+        return back();
     }
 }

@@ -1,5 +1,5 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
+import AdminLayout from '@/Layouts/AdminLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
@@ -14,17 +14,26 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('register'), {
+    form.post(route('users.store'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Register" />
-
-        <form @submit.prevent="submit">
+    <AdminLayout>
+        <Head title="Create user" />
+        <div class="max-w-7xl mx-auto mt-4">
+            <div class="flex justify-between">
+                <Link
+                    :href="route('users.index')"
+                    class="px-3 py-2 font-semibold text-white bg-indigo-500 rounded hover:bg-indigo-700"
+                    >Back</Link
+                >
+            </div>
+        </div>
+        <div class="max-w-md mx-auto mt-6 p-6 bg-slate-100">
+            <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Name" />
 
@@ -93,21 +102,15 @@ const submit = () => {
             </div>
 
             <div class="mt-4 flex items-center justify-end">
-                <Link
-                    :href="route('login')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 :text-gray-400 :hover:text-gray-100 :focus:ring-offset-gray-800"
-                >
-                    Already registered?
-                </Link>
-
                 <PrimaryButton
                     class="ms-4"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
-                    Register
+                    Create User
                 </PrimaryButton>
             </div>
         </form>
-    </GuestLayout>
+        </div>
+    </AdminLayout>
 </template>
