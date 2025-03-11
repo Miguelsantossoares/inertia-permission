@@ -10,37 +10,37 @@ import TableRow from "@/Components/TableRow.vue";
 import TableHeaderCell from "@/Components/TableDataCell.vue";
 import TableDataCell from "@/Components/TableDataCell.vue";
 
-defineProps(["permissions"]);
+defineProps(["posts"]);
 const form = useForm({});
 
-const showConfirmDeletePermissionModel = ref(false);
+const showConfirmDeletePostModel = ref(false);
 
-const confirmDeletePermission = () => {
-    showConfirmDeletePermissionModel.value = true;
+const confirmDeletePost = () => {
+    showConfirmDeletePostModel.value = true;
 };
 
 const closeModal = () => {
-    showConfirmDeletePermissionModel.value = false;
+    showConfirmDeletePostModel.value = false;
 };
 
-const deletePermission = (id) => {
-    form.delete(route("permissions.destroy", id), {
+const deletePost = (id) => {
+    form.delete(route("posts.destroy", id), {
         onSuccess: () => closeModal(),
     });
 };
 </script>
 
 <template>
-    <Head title="Permissions" />
+    <Head title="Dashboard" />
 
     <AdminLayout>
         <div class="py-4 mx-auto max-w-7xl">
             <div class="flex justify-between">
-                <h1>Permission Index Page</h1>
+                <h1>Post Index Page</h1>
                 <Link
-                    :href="route('permissions.create')"
+                    :href="route('posts.create')"
                     class="px-3 py-2 font-semibold text-white bg-indigo-500 rounded hover:bg-indigo-700"
-                    >New Permission</Link
+                    >New Post</Link
                 >
             </div>
             <div class="mt-6">
@@ -48,50 +48,43 @@ const deletePermission = (id) => {
                     <template #header>
                         <TableRow>
                             <TableHeaderCell>ID</TableHeaderCell>
-                            <TableHeaderCell>Name</TableHeaderCell>
+                            <TableHeaderCell>Title</TableHeaderCell>
                             <TableHeaderCell>Action</TableHeaderCell>
                         </TableRow>
                     </template>
                     <template #default>
                         <TableRow
-                            v-for="permission in permissions"
-                            :key="permission.id"
+                            v-for="post in posts"
+                            :key="post.id"
                             class="border-b"
                         >
-                            <TableDataCell>{{ permission.id }}</TableDataCell>
-                            <TableDataCell>{{ permission.name }}</TableDataCell>
+                            <TableDataCell>{{ post.id }}</TableDataCell>
+                            <TableDataCell>{{ post.title }}</TableDataCell>
                             <TableDataCell class="space-x-4">
                                 <Link
-                                    :href="
-                                        route('permissions.edit', permission.id)
-                                    "
+                                    :href="route('posts.edit', post.id)"
                                     class="px-3 py-2 font-semibold text-green-400 hover:text-green-600"
                                     >Edit</Link
                                 >
                                 <button
-                                    @click="confirmDeletePermission"
+                                    @click="confirmDeletePost"
                                     class="px-3 py-2 font-semibold text-red-400 hover:text-red-600"
                                 >
                                     Delete
                                 </button>
 
                                 <Modal
-                                    :show="showConfirmDeletePermissionModel"
+                                    :show="showConfirmDeletePostModel"
                                     @close="closeModal"
                                     ><div class="p-6">
                                         <h2
                                             class="text-lg font-semibold text-slate-800"
                                         >
-                                            Are you sure to delete this
-                                            Permission?
+                                            Are you sure to delete this Post?
                                         </h2>
                                         <div class="mt-6 flex space-x-4">
                                             <DangerButton
-                                                @click="
-                                                    deletePermission(
-                                                        permission.id
-                                                    )
-                                                "
+                                                @click="deletePost(post.id)"
                                             >
                                                 Delete
                                             </DangerButton>
